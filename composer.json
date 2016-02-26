@@ -1,0 +1,27 @@
+{
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "sfusilier/Lib",
+                "version": "dev-release/1.0",
+                "source": {
+                    "url": "/usr/home/scott/FRAMEWORK/Lib.git",
+                    "type": "git",
+                    "reference": "release/1.0"
+                },
+                "require": {
+                    "php": ">=5.3.9",
+                    "symfony/http-foundation": "^2.7",
+                    "nikic/fast-route": "~0.3"
+                },
+                "autoload": {
+                    "psr-4": { "Lib\\": "" }
+                }
+            }
+        }
+    ],
+    "require": {
+        "sfusilier/Lib": "dev-release/1.0"
+    }
+}
