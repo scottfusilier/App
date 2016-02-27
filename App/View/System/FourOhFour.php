@@ -1,5 +1,7 @@
 <?php
-namespace App\View;
+namespace App\View\System;
+
+use App\View\AppView;
 
 class FourOhFour extends AppView
 {

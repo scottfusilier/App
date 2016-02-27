@@ -1,5 +1,7 @@
 <?php
-namespace App\View;
+namespace App\View\Example;
+
+use App\View\AppView;
 
 class ExampleFooterView extends AppView
 {
