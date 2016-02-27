@@ -1,16 +1,15 @@
 <?php
 namespace App\View;
 
-class ExampleView extends AppView
+class ExampleFooterView extends AppView
 {
 /*
  *  App\View\ExampleView::get()->render();
  */
     public function render()
     { ?>
-<div>
-<?=$this->data ?>
-</div>
+</body>
+</html>
 <?php
     }
 }
