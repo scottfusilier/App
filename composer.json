@@ -6,7 +6,7 @@
                 "name": "sfusilier/Lib",
                 "version": "dev-release/1.0",
                 "source": {
-                    "url": "/usr/home/scott/FRAMEWORK/Lib.git",
+                    "url": "https://scott_fusilier@bitbucket.org/scott_fusilier/lib.git",
                     "type": "git",
                     "reference": "release/1.0"
                 },
