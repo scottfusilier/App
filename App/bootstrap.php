@@ -11,4 +11,4 @@ session_start();
 
 Lib\Container\AppContainer::register(new App\Handler\AppErrorHandler);
 
-Lib\App::run($routes);
+Lib\App::getInstance()->run($routes);
