@@ -9,7 +9,7 @@ class DatabaseConfig
         'host' => 'xxx.xxx.xxx.xxx',
         'login' => '',
         'password' => '',
-        'database' => 'Core',
+        'database' => '',
         'encoding' => 'utf8',
     ];
 
