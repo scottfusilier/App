@@ -5,22 +5,26 @@ class DatabaseConfig
 {
     private static $default = [
         'name' => 'default',
-        'persistent' => false,
-        'host' => 'xxx.xxx.xxx.xxx',
-        'login' => '',
-        'password' => '',
-        'database' => '',
-        'encoding' => 'utf8',
+        'dsn' => [
+            'mysql:host=172.16.1.17',
+            'dbname=Example_DB',
+            'charset=utf8',
+        ],
+        'login' => 'exampleUser',
+        'password' => 'examplePasswd',
+        'options' => [],
     ];
 
-    private static $someconfig = [
-        'name' => 'someconfig',
-        'persistent' => false,
-        'host' => 'localhost',
-        'login' => '',
-        'password' => '',
-        'database' => '',
-        'encoding' => 'utf8',
+    private static $anotherconfig = [
+        'name' => 'anotherconfig',
+        'dsn' => [
+            'mysql:host=localhost',
+            'dbname=testdb',
+            'charset=utf8',
+        ],
+        'login' => 'dbtestuser',
+        'password' => 'testpassword',
+        'options' => ['key' => 'value'],
     ];
 
     public static function getDatabaseConfig($configName)
