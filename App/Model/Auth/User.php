@@ -5,13 +5,6 @@ use App\Model\AppModel;
 
 class User extends AppModel
 {
-    public $idUser;
-    public $UserEmail;
-    public $FirstName;
-    public $LastName;
-    public $Password;
-    public $Salt;
-
     protected function getIdField()
     {
         return 'idUser';
@@ -19,7 +12,7 @@ class User extends AppModel
 
     protected function createTable()
     {
-        $className = (new \ReflectionClass($this))->getShortName();
+        $className = $this->getTableName();
         $sql = 'CREATE TABLE IF NOT EXISTS `'.$className.'` (
               `'.$this->getIdField().'` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
               `UserEmail` VARCHAR(255) NOT NULL,

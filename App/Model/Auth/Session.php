@@ -9,10 +9,6 @@ use App\Model\AppModel;
 
 class Session extends AppModel implements \SessionHandlerInterface
 {
-    public $idSession;
-    public $access;
-    public $data;
-
     protected function getIdField()
     {
         return 'idSession';
@@ -20,7 +16,7 @@ class Session extends AppModel implements \SessionHandlerInterface
 
     protected function createTable()
     {
-        $className = (new \ReflectionClass($this))->getShortName();
+        $className =  $this->getTableName();
         $sql = "CREATE TABLE IF NOT EXISTS `$className` (
         `".$this->getIdField()."` VARCHAR(32) NOT NULL,
         `access` INT(10) UNSIGNED DEFAULT NULL,
@@ -72,9 +68,9 @@ class Session extends AppModel implements \SessionHandlerInterface
         // Create time stamp
         $access = time();
 
-        $stmt = $this->db->prepare('INSERT INTO Session VALUES (:id, :access, :data) ON DUPLICATE KEY UPDATE access = :access, data = :data');
+        $sql = 'INSERT INTO Session VALUES (:id, :access, :data) ON DUPLICATE KEY UPDATE access = :access, data = :data';
 
-        if($stmt->execute([':id' => $id, ':access' => $access, ':data' => $data])){
+        if($this->query($sql,[':id' => $id, ':access' => $access, ':data' => $data])){
             return true;
         }
         return false;
@@ -100,9 +96,9 @@ class Session extends AppModel implements \SessionHandlerInterface
         // Calculate what is to be deemed old
         $old = time() - $max;
 
-        $stmt = $this->db->prepare('DELETE * FROM Session WHERE access < :old');
+        $sql = 'DELETE * FROM Session WHERE access < :old';
 
-        if ($stmt->execute([':old' => $old])) {
+        if ($this->query($sql,[':old' => $old])) {
             return true;
         }
         return false;

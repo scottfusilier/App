@@ -5,11 +5,6 @@ use App\Model\AppModel;
 
 class PermGroupToObject extends AppModel
 {
-    public $idPermGroupToObject;
-    public $idPermGroup;
-    public $idObject;
-    public $idPermission;
-
     protected function getIdField()
     {
         return 'idPermGroupToObject';
@@ -17,7 +12,7 @@ class PermGroupToObject extends AppModel
 
     protected function createTable()
     {
-        $className = (new \ReflectionClass($this))->getShortName();
+        $className = $this->getTableName();
         $sql = "CREATE TABLE IF NOT EXISTS `$className` (
               `".$this->getIdField()."` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
               `idPermGroup` INT(10) UNSIGNED NOT NULL, 
