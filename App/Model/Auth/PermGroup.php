@@ -5,10 +5,6 @@ use App\Model\AppModel;
 
 class PermGroup extends AppModel
 {
-    public $idPermGroup;
-    public $GroupName;
-    public $Valid;
-
     protected function getIdField()
     {
         return 'idPermGroup';
@@ -16,7 +12,7 @@ class PermGroup extends AppModel
 
     protected function createTable()
     {
-        $className = (new \ReflectionClass($this))->getShortName();
+        $className = $this->getTableName();
         $sql = "CREATE TABLE IF NOT EXISTS `$className` (
               `".$this->getIdField()."` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
               `GroupName` VARCHAR(255) NOT NULL UNIQUE,

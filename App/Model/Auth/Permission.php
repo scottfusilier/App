@@ -5,9 +5,6 @@ use App\Model\AppModel;
 
 class Permission extends AppModel
 {
-    public $idPermission;
-    public $Permission;
-
     protected function getIdField()
     {
         return 'idPermission';
@@ -15,9 +12,7 @@ class Permission extends AppModel
 
     protected function createTable()
     {
-        //permissions
-        $className = (new \ReflectionClass($this))->getShortName();
-        $sql = "CREATE TABLE IF NOT EXISTS `$className` (
+        $sql = "CREATE TABLE IF NOT EXISTS `$this->getTableName()` (
             `".$this->getIdField()."` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
             `Permission` VARCHAR(255) NOT NULL UNIQUE,
             PRIMARY KEY (`".$this->getIdField()."`)
@@ -50,19 +45,9 @@ class Permission extends AppModel
             ':permission' => $permission,
         );
 
-        try {
-            // Execute the query against the database
-            $stmt = $this->db->prepare($query);
-            $result = $stmt->execute($query_params);
-        } catch (\PDOException $ex) {
-            // Note: On a production website, you should not output $ex->getMessage().
-            // It may provide an attacker with helpful information about your code.
-            die('Failed to run query: '.$ex->getMessage());
-        }
+        $stmt = $this->query($query,$query_params);
 
-        $row = $stmt->fetch(\PDO::FETCH_ASSOC);
-
-        if ($row) {
+        if ($stmt->fetch(\PDO::FETCH_ASSOC)) {
             return true;
         } else {
             return false;
