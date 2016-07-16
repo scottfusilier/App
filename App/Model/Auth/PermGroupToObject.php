@@ -20,6 +20,6 @@ class PermGroupToObject extends AppModel
               `idPermission` INT(10) UNSIGNED NOT NULL, 
               PRIMARY KEY (`".$this->getIdField()."`)
             ) ENGINE=InnoDB AUTO_INCREMENT=1024171332";
-        $this->db->exec($sql);
+        $this->execute($sql);
     }
 }

@@ -23,6 +23,6 @@ class User extends AppModel
               PRIMARY KEY (`'.$this->getIdField().'`),
               UNIQUE KEY `UserEmail` (`UserEmail`)
           ) ENGINE=InnoDB AUTO_INCREMENT=1263945395';
-        $this->db->exec($sql);
+        $this->execute($sql);
     }
 }

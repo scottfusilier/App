@@ -19,6 +19,6 @@ class UserToPermGroup extends AppModel
               `idPermGroup` INT(10) UNSIGNED NOT NULL, 
               PRIMARY KEY (`".$this->getIdField()."`)
             ) ENGINE=InnoDB AUTO_INCREMENT=1134471211";
-        $this->db->exec($sql);
+        $this->execute($sql);
     }
 }

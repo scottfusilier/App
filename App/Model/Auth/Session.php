@@ -23,7 +23,7 @@ class Session extends AppModel implements \SessionHandlerInterface
         `data` TEXT,
         PRIMARY KEY (`".$this->getIdField()."`)
         ) ENGINE=InnoDB";
-        $this->db->exec($sql);
+        $this->execute($sql);
     }
 
 /*
@@ -32,7 +32,7 @@ class Session extends AppModel implements \SessionHandlerInterface
     public function open($savePath, $sessionName)
     {
         // If connection
-        if ($this->db) {
+        if ($this->getReadPdo()) {
             return true;
         }
         return false;
@@ -44,7 +44,6 @@ class Session extends AppModel implements \SessionHandlerInterface
     public function close()
     {
         // Close the database connection
-        $this->db = null;
         return true;
     }
 
@@ -70,7 +69,7 @@ class Session extends AppModel implements \SessionHandlerInterface
 
         $sql = 'INSERT INTO Session VALUES (:id, :access, :data) ON DUPLICATE KEY UPDATE access = :access, data = :data';
 
-        if($this->query($sql,[':id' => $id, ':access' => $access, ':data' => $data])){
+        if($this->writeQuery($sql,[':id' => $id, ':access' => $access, ':data' => $data])){
             return true;
         }
         return false;
@@ -98,7 +97,7 @@ class Session extends AppModel implements \SessionHandlerInterface
 
         $sql = 'DELETE * FROM Session WHERE access < :old';
 
-        if ($this->query($sql,[':old' => $old])) {
+        if ($this->writeQuery($sql,[':old' => $old])) {
             return true;
         }
         return false;
