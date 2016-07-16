@@ -17,7 +17,7 @@ class Permission extends AppModel
             `Permission` VARCHAR(255) NOT NULL UNIQUE,
             PRIMARY KEY (`".$this->getIdField()."`)
             ) ENGINE=InnoDB AUTO_INCREMENT=1123457408";
-        $this->db->exec($sql);
+        $this->execute($sql);
     }
 
     public function isAuthorized($idUser, $objectName, $permission = 'Read')
@@ -45,7 +45,7 @@ class Permission extends AppModel
             ':permission' => $permission,
         );
 
-        $stmt = $this->query($query,$query_params);
+        $stmt = $this->readQuery($query,$query_params);
 
         if ($stmt->fetch(\PDO::FETCH_ASSOC)) {
             return true;

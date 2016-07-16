@@ -19,6 +19,6 @@ class PermGroup extends AppModel
               `Valid` TINYINT NOT NULL DEFAULT 1,
               PRIMARY KEY (`".$this->getIdField()."`)
             ) ENGINE=InnoDB AUTO_INCREMENT=1124478911";
-        $this->db->exec($sql);
+        $this->execute($sql);
     }
 }

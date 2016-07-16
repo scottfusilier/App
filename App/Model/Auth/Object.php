@@ -18,6 +18,6 @@ class Object extends AppModel
               `ObjectName` VARCHAR(255) NOT NULL UNIQUE,
               PRIMARY KEY (`".$this->getIdField()."`)
             ) ENGINE=InnoDB AUTO_INCREMENT=1124477406";
-        $this->db->exec($sql);
+        $this->execute($sql);
     }
 }
