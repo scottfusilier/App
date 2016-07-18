@@ -7,6 +7,6 @@ class ExampleController extends AppController
 {
     public function index($args)
     {
-        ExampleTemplate::get()->render(\App\View\Example\ExampleView::get()->setVars(['data' => var_dump($args)]));
+        ExampleTemplate::get()->render(\App\View\Example\ExampleView::get()->setVars(['data' => json_encode($args)]));
     }
 }

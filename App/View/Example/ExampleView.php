@@ -10,9 +10,7 @@ class ExampleView extends AppView
  */
     public function render()
     { ?>
-<div>
-<?=$this->data ?>
-</div>
+<div><?=$this->data ?></div>
 <?php
     }
 }
