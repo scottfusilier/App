@@ -1,20 +1,21 @@
 <?php
 namespace App\Controller;
 
-use Lib\Controller\Controller;
-
-abstract class DataController extends Controller
+abstract class DataController extends AppController
 {
+    abstract protected function accessControl($method);
+
     public function data($args)
     {
-        if (isset($args['type']) && $args['type'] === __FUNCTION__) {
-            if (isset($args['action']) && method_exists($this, $args['action'])) {
+        if (!empty($args['type']) && $args['type'] === __FUNCTION__) {
+            if (!empty($args['action']) && method_exists($this, $args['action'])) {
                 $method = $args['action'];
-                $this->$method($args);
-                return;
+                if ($this->accessControl($method)) {
+                    return $this->$method($args);
+                }
+                return $this->unAuthorized();
             }
         }
-
-        $this->unAuthorized();
+        return $this->fourOhFour();
     }
 }
