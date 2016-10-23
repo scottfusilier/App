@@ -1,16 +1,11 @@
 <?php
 namespace App\Controller;
 
-class ExampleDataController extends DataController
+class ExampleDataController extends AppDataController
 {
-    protected $permissioned = [
+    protected $acl = [
         'example'
     ];
-
-    protected function accessControl($method)
-    {
-        return ($this->Auth->hasUser() || !in_array($method, $this->permissioned));
-    }
 
     public function example(Array $args)
     {

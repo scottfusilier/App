@@ -1,9 +1,14 @@
 <?php
 namespace App\Controller;
 
-abstract class DataController extends AppController
+abstract class AppDataController extends AppController
 {
-    abstract protected function accessControl($method);
+    protected $acl = [];
+
+    protected function accessControl($method)
+    {
+        return (!in_array($method, $this->acl ) || $this->Auth->hasUser());
+    }
 
     public function data($args)
     {
