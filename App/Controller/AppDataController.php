@@ -3,11 +3,11 @@ namespace App\Controller;
 
 abstract class AppDataController extends AppController
 {
-    protected $acl = [];
+    protected $openACL = [];
 
     protected function accessControl($method)
     {
-        return (!in_array($method, $this->acl ) || $this->Auth->hasUser());
+        return ($this->Auth->hasUser() || in_array($method, $this->openACL));
     }
 
     public function data($args)
