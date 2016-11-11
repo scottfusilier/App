@@ -4,6 +4,7 @@ namespace App\Controller;
 class ExampleDataController extends AppDataController
 {
     protected $openACL = [
+        'data',
         'open'
     ];
 
