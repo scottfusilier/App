@@ -4,11 +4,11 @@
             "type": "package",
             "package": {
                 "name": "sfusilier/Lib",
-                "version": "dev-release/1.1",
+                "version": "1.1.1",
                 "source": {
                     "url": "https://github.com/scottfusilier/Lib.git",
                     "type": "git",
-                    "reference": "release/1.1"
+                    "reference": "v1.1.1"
                 },
                 "require": {
                     "php": ">=5.3.9",
@@ -22,6 +22,6 @@
         }
     ],
     "require": {
-        "sfusilier/Lib": "dev-release/1.1"
+        "sfusilier/Lib": "1.1.1"
     }
 }

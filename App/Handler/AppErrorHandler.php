@@ -13,7 +13,7 @@ class AppErrorHandler implements AppErrorHandlerInterface
         ExampleTemplate::get()->render(FourOhFour::get());
     }
 
-    public function handleAppError()
+    public function handleAppError(\Exception $e)
     {
         ExampleTemplate::get()->render(AppError::get());
     }
