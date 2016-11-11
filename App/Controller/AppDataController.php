@@ -21,6 +21,6 @@ abstract class AppDataController extends AppController
                 return $this->unAuthorized();
             }
         }
-        return $this->fourOhFour();
+        return $this->renderFourOhFour();
     }
 }
