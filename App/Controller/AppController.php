@@ -28,7 +28,17 @@ abstract class AppController extends Controller
 
     public function accessControl($method)
     {
-        return ($this->Auth->hasUser() || in_array($method, $this->openACL));
+        if (!isset($this->openACL[$method])) {
+            return true;
+        }
+
+        return (($this->Auth->hasUser() && $this->isAuthorized($method)));
+    }
+
+    protected function isAuthorized($method)
+    {
+        // permission check implentation here
+        return true;
     }
 
     public function defaultUnauthRedirect()
