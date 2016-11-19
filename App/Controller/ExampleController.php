@@ -5,7 +5,9 @@ use App\Template\ExampleTemplate;
 
 class ExampleController extends AppController
 {
-    protected $openACL = [];
+    protected $openACL = [
+        'index'
+    ];
 
     public function index($args)
     {
