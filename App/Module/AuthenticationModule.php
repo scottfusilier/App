@@ -62,6 +62,7 @@ class AuthenticationModule extends Module
     {
         unset($_SESSION['user']);
         $this->User = array();
+        session_destroy();
     }
 
 /*
