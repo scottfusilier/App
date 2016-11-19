@@ -26,23 +26,28 @@ abstract class AppController extends Controller
         AppContainer::getInstance('AppErrorHandler')->handleNotFound();
     }
 
-    public function accessControl($method)
+    public function isAuthenticated()
     {
-        if (!isset($this->openACL[$method])) {
-            return true;
-        }
-
-        return (($this->Auth->hasUser() && $this->isAuthorized($method)));
+        return $this->Auth->hasUser();
     }
 
-    protected function isAuthorized($method)
+    public function isOpenACL($method)
     {
-        // permission check implentation here
-        return true;
+        return in_array($method, $this->openACL);
     }
 
-    public function defaultUnauthRedirect()
+    public function isAuthorized($method)
     {
-        return $this->redirect('/');
+        // your permission check implentation here
+        $className = (new \ReflectionClass($this))->getShortName();
+        return $this->Auth->userAuthorized($className . '.' . $method);
+    }
+
+    public function defaultUnauthAction()
+    {
+        return [
+            'controller' => 'App\\Controller\\ExampleController',
+            'action' => 'index'
+        ];
     }
 }

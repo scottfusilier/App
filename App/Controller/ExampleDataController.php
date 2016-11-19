@@ -4,7 +4,8 @@ namespace App\Controller;
 class ExampleDataController extends AppDataController
 {
     protected $openACL = [
-        'example' => []
+        'data',
+        'example'
     ];
 
     public function example(Array $args)
