@@ -23,6 +23,6 @@ class AppAuthHandler implements AppAuthHandlerInterface
             return $controller->{$action}($vars);
         }
 
-        return $controller->unAuthorized();
+        return $controller->notAuthorized();
     }
 }
