@@ -43,6 +43,11 @@ abstract class AppController extends Controller
         return $this->Auth->userAuthorized($className . '.' . $method);
     }
 
+    public function notAuthorized()
+    {
+        return $this->unAuthorized();
+    }
+
     public function defaultUnauthAction()
     {
         return [
