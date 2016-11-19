@@ -5,20 +5,24 @@ class ExampleDataController extends AppDataController
 {
     protected $openACL = [
         'data',
-        'example'
+        'open'
     ];
 
     public function example(Array $args)
     {
         $data = new \stdClass;
         $data->success = true;
-        $data->data = ['I am data'];
+        $data->data = ['I am permissioned data'];
 
         echo json_encode($data);
     }
 
     public function open(Array $args)
     {
-        echo '<p>open for consumption</p>';
+        $data = new \stdClass;
+        $data->success = true;
+        $data->data = ['I am data open for consumption'];
+
+        echo json_encode($data);
     }
 }
