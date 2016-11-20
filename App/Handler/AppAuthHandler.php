@@ -12,6 +12,7 @@ class AppAuthHandler implements AppAuthHandlerInterface
         }
 
         if (!$controller->isAuthenticated()) {
+            $controller->storeAccessURI();
             $noAuth = $controller->defaultUnauthAction();
             $newController = $noAuth['controller'];
             $newAction = $noAuth['action'];
