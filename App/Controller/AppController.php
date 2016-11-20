@@ -48,6 +48,12 @@ abstract class AppController extends Controller
         return $this->unAuthorized();
     }
 
+    public function storeAccessURI()
+    {
+        $location = parse_url(AppContainer::getInstance('Request')->getRequestUri(), PHP_URL_PATH);
+        return $this->Auth->sessionSetVar('location', $location);
+    }
+
     public function defaultUnauthAction()
     {
         return [
