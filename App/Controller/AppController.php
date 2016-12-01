@@ -3,7 +3,7 @@ namespace App\Controller;
 
 use Lib\Controller\Controller;
 use Lib\Container\AppContainer;
-use App\Module\AuthenticationModule;
+use App\Component\AuthComponent;
 
 abstract class AppController extends Controller
 {
@@ -17,7 +17,7 @@ abstract class AppController extends Controller
 
     protected function setAuth()
     {
-        $this->Auth = new AuthenticationModule();
+        $this->Auth = new AuthComponent();
     }
 
     protected function renderFourOhFour()
