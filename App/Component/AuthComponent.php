@@ -16,11 +16,11 @@ class AuthComponent extends Component
     }
 
 /*
- * get the user variable from the session
+ * Initialize User if exists
  */
     public function initUser()
     {
-        if (isset($_SESSION['user'])) {
+        if (!empty($_SESSION['user'])) {
             $this->User = $_SESSION['user'];
         } else {
             $this->User = array();
@@ -28,7 +28,7 @@ class AuthComponent extends Component
     }
 
 /*
- * is user logged in
+ * Determine if user is currently logged in
  */
     public function hasUser()
     {
@@ -40,7 +40,7 @@ class AuthComponent extends Component
     }
 
 /*
- *
+ * User accessor
  */
     public function getUser()
     {
@@ -48,21 +48,11 @@ class AuthComponent extends Component
     }
 
 /*
- *
+ * User id field accessor
  */
     public function getUserID()
     {
         return $this->User['idUser'];
-    }
-
-/*
- * log user out
- */
-    public function logout()
-    {
-        unset($_SESSION['user']);
-        $this->User = array();
-        session_destroy();
     }
 
 /*
@@ -74,7 +64,7 @@ class AuthComponent extends Component
     }
 
 /*
- * session has var
+ * Session has var
  */
     public function sessionHasVar($key)
     {
@@ -85,7 +75,7 @@ class AuthComponent extends Component
     }
 
 /*
- * session var accessor
+ * Session var accessor
  */
     public function sessionGetVar($key)
     {
@@ -96,7 +86,7 @@ class AuthComponent extends Component
     }
 
 /*
- * session var unsetter
+ * Session var unsetter
  */
     public function sessionRemoveVar($key)
     {
@@ -108,7 +98,7 @@ class AuthComponent extends Component
     }
 
 /*
- * This is intended to be used as an interface to Permissions::isAuthorized
+ * Wrapper function for Permissions::isAuthorized
  *
  */
     public function userAuthorized($objectName, $permission = 'Read')
@@ -120,7 +110,7 @@ class AuthComponent extends Component
     }
 
 /*
- * remove a user
+ * Remove a user
  */
     public function removeUser($idUser = 0)
     {
@@ -164,6 +154,9 @@ class AuthComponent extends Component
         return dechex(mt_rand(0, 2147483647)).dechex(mt_rand(0, 2147483647));
     }
 
+/*
+ * Register a new user
+ */
     public function register($args = array())
     {
         if (empty($args)) {
@@ -183,6 +176,9 @@ class AuthComponent extends Component
         return $User->save();
     }
 
+/*
+ * Log user in
+ */
     public function login($args = array())
     {
         if (empty($args)) {
@@ -216,10 +212,7 @@ class AuthComponent extends Component
                 'FirstName' => $User->FirstName,
                 'LastName' => $User->LastName,
             ];
-            // This stores the user's data into the session at the index 'user'.
-            // We will check this index on the private pageis to determine whether
-            // or not the user is logged in.  We can also use it to retrieve
-            // the user's details.
+            // store the user's data into the session
             $_SESSION['user'] = $user;
             $this->User = $user;
             //success
@@ -227,5 +220,15 @@ class AuthComponent extends Component
         } else {
             return false;
         }
+    }
+
+/*
+ * Log user out
+ */
+    public function logout()
+    {
+        unset($_SESSION['user']);
+        $this->User = array();
+        session_destroy();
     }
 }
