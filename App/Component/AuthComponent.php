@@ -66,6 +66,48 @@ class AuthComponent extends Component
     }
 
 /*
+ * Session var setter
+ */
+    public function sessionSetVar($key,$value)
+    {
+        $_SESSION[$key] = $value;
+    }
+
+/*
+ * session has var
+ */
+    public function sessionHasVar($key)
+    {
+        if (isset($_SESSION[$key])) {
+            return true;
+        }
+        return false;
+    }
+
+/*
+ * session var accessor
+ */
+    public function sessionGetVar($key)
+    {
+        if (isset($_SESSION[$key])) {
+            return $_SESSION[$key];
+        }
+        return false;
+    }
+
+/*
+ * session var unsetter
+ */
+    public function sessionRemoveVar($key)
+    {
+        if (isset($_SESSION[$key])) {
+            unset($_SESSION[$key]);
+            return true;
+        }
+        return false;
+    }
+
+/*
  * This is intended to be used as an interface to Permissions::isAuthorized
  *
  */
@@ -75,18 +117,6 @@ class AuthComponent extends Component
             return false;
         }
         return (Permission::get()->isAuthorized($this->User['idUser'], $objectName, $permission));
-    }
-
-/*
- * scrub the args to ensure they meet length and type requirements
- */
-    public function cleanArgs(&$args)
-    {
-        //TODO: rigorous arg cleaning here
-        foreach ($args as $arg) {
-        }
-
-        return true;
     }
 
 /*
@@ -139,9 +169,6 @@ class AuthComponent extends Component
         if (empty($args)) {
             return false;
         }
-        if (!$this->cleanArgs($args)) {
-            return false;
-        }
 
         $salt = $this->generateSalt();
         $password = $this->generateHash($args['password'], $salt);
@@ -161,9 +188,7 @@ class AuthComponent extends Component
         if (empty($args)) {
             return false;
         }
-        if (!$this->cleanArgs($args)) {
-            return false;
-        }
+
         //check csrf token
         $token = $args['token'];
         $formName = $args['formName'];

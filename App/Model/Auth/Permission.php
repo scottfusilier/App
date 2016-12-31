@@ -12,7 +12,7 @@ class Permission extends AppModel
 
     protected function createTable()
     {
-        $sql = "CREATE TABLE IF NOT EXISTS `$this->getTableName()` (
+        $sql = "CREATE TABLE IF NOT EXISTS `".$this->getTableName()."` (
             `".$this->getIdField()."` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
             `Permission` VARCHAR(255) NOT NULL UNIQUE,
             PRIMARY KEY (`".$this->getIdField()."`)
