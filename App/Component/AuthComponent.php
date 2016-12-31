@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Module;
+namespace App\Component;
 
 use App\Model\Auth\Permission;
 use App\Model\Auth\User;
 use App\Helper\CSRF;
 
-class AuthenticationModule extends Module
+class AuthComponent extends Component
 {
     private $User;
 
