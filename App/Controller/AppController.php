@@ -58,7 +58,7 @@ abstract class AppController extends Controller
     {
         return [
             'controller' => 'App\\Controller\\ExampleController',
-            'action' => 'index'
+            'action' => 'login'
         ];
     }
 }
