@@ -3,7 +3,7 @@ namespace App\Controller;
 
 class ExampleDataController extends AppDataController
 {
-    protected $openACL = [
+    protected $openACL = [ // open routes; no authentication required
         'data',
         'open'
     ];
