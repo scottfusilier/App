@@ -20,8 +20,8 @@ class AuthComponent extends Component
  */
     public function initUser()
     {
-        if (!empty($_SESSION['user'])) {
-            $this->User = $_SESSION['user'];
+        if ($this->sessionHasVar('user')) {
+            $this->User = $this->sessionGetVar('user');
         } else {
             $this->User = array();
         }
@@ -68,7 +68,7 @@ class AuthComponent extends Component
  */
     public function sessionHasVar($key)
     {
-        if (isset($_SESSION[$key])) {
+        if (!empty($_SESSION[$key])) {
             return true;
         }
         return false;
@@ -213,7 +213,7 @@ class AuthComponent extends Component
                 'LastName' => $User->LastName,
             ];
             // store the user's data into the session
-            $_SESSION['user'] = $user;
+            $this->sessionSetVar('user',$user);
             $this->User = $user;
             //success
             return true;
@@ -227,7 +227,7 @@ class AuthComponent extends Component
  */
     public function logout()
     {
-        unset($_SESSION['user']);
+        $this->sessionRemoveVar('user');
         $this->User = array();
         session_destroy();
     }
