@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "ba270f60fd8f41bde9561b52e5a8dbc3",
+    "content-hash": "84788b4ac950365a348bcfc947457ee4",
     "packages": [
         {
             "name": "ircmaxell/password-compat",
@@ -92,12 +92,30 @@
             "time": "2017-01-19T11:35:12+00:00"
         },
         {
+            "name": "sfusilier/Data",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/scottfusilier/Data.git",
+                "reference": "v1.0.0"
+            },
+            "require": {
+                "php": ">=5.5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Data\\": ""
+                }
+            }
+        },
+        {
             "name": "sfusilier/Lib",
-            "version": "1.1.2",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/scottfusilier/Lib.git",
-                "reference": "v1.1.2"
+                "reference": "v1.2.0"
             },
             "require": {
                 "nikic/fast-route": "^1.2",

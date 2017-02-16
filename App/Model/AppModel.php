@@ -1,7 +1,7 @@
 <?php
 namespace App\Model;
 
-use Lib\Model\SqlModel;
+use Data\Model\SqlModel;
 
 abstract class AppModel extends SqlModel
 {
