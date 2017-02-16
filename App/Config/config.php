@@ -5,7 +5,7 @@
 
 // Register database configuration callables. Callable should return a new connection object.
 // NOTE: ConnectionContainer will call the Callable on first access and then return the same connection instance on every subsequent access.
-Lib\Container\ConnectionContainer::register('default',
+Data\Container\ConnectionContainer::register('default',
 function () {
     try {
         $obj = new \PDO('mysql:host=172.16.1.17;dbname=Example_DB;charset=utf8','ExampleUser','ExamplePass',[]);

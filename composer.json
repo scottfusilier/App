@@ -4,11 +4,11 @@
             "type": "package",
             "package": {
                 "name": "sfusilier/Lib",
-                "version": "1.1.2",
+                "version": "1.2.0",
                 "source": {
                     "url": "https://github.com/scottfusilier/Lib.git",
                     "type": "git",
-                    "reference": "v1.1.2"
+                    "reference": "v1.2.0"
                 },
                 "require": {
                     "php": ">=5.5.0",
@@ -19,9 +19,28 @@
                     "psr-4": { "Lib\\": "" }
                 }
             }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "sfusilier/Data",
+                "version": "1.0.0",
+                "source": {
+                    "url": "https://github.com/scottfusilier/Data.git",
+                    "type": "git",
+                    "reference": "v1.0.0"
+                },
+                "require": {
+                    "php": ">=5.5.0"
+                },
+                "autoload": {
+                    "psr-4": { "Data\\": "" }
+                }
+            }
         }
     ],
     "require": {
-        "sfusilier/Lib": "1.1.2"
+        "sfusilier/Lib": "1.2.0",
+        "sfusilier/Data": "1.0.0"
     }
 }
