@@ -4,17 +4,17 @@ namespace App\Handler;
 use Lib\Handler\AppErrorHandlerInterface;
 use App\View\System\FourOhFour;
 use App\View\System\AppError;
-use App\Template\ExampleTemplate;
+use App\Template\BasicTemplate as Template;
 
 class AppErrorHandler implements AppErrorHandlerInterface
 {
     public function handleNotFound()
     {
-        ExampleTemplate::get()->render(FourOhFour::get());
+        Template::get()->render(FourOhFour::get());
     }
 
     public function handleAppError(\Exception $e)
     {
-        ExampleTemplate::get()->render(AppError::get());
+        Template::get()->render(AppError::get());
     }
 }
