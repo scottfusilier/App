@@ -120,7 +120,7 @@ class AuthComponent extends Component
 /*
  * Hash a field
  */
-    public function generateHash($value,$salt)
+    public function generateHash($value)
     {
         $options = [
             'cost' => 12

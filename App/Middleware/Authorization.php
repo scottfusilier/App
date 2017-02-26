@@ -16,7 +16,7 @@ class Authorization implements MiddlewareInterface
         $Auth = Container::get('AuthComponent');
 
         $route = '';
-        if (Container::isRegistered('Route')) {
+        if (Container::has('Route')) {
             $route = Container::get('Route');
         }
 
