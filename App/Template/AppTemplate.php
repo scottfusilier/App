@@ -2,11 +2,11 @@
 namespace App\Template;
 
 use Lib\Template\Template;
-use Lib\View\BasicView;
+use Lib\View\View;
 
 class AppTemplate extends Template
 {
-    public function render(BasicView $content)
+    public function render(View $content)
     {
     }
 }

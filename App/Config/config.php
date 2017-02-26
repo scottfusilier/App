@@ -3,6 +3,16 @@
  * config params here
  */
 
+/* register handlers */
+Lib\Container\AppContainer::register('AppErrorHandler', function () {
+    return new App\Handler\AppErrorHandler;
+});
+
+Lib\Container\AppContainer::register('AuthComponent', function() {
+    return new \App\Component\AuthComponent;
+});
+
+
 // Register database configuration callables. Callable should return a new connection object.
 // NOTE: ConnectionContainer will call the Callable on first access and then return the same connection instance on every subsequent access.
 Data\Container\ConnectionContainer::register('default',

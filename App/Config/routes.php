@@ -3,30 +3,48 @@
  * Application Routes
  */
 
+/* register middleware groups, note: these can be added on a per-route basis */
+Lib\App::getInstance()->addMiddlewares('Atn', [
+    new App\Middleware\Authentication
+]);
+
+Lib\App::getInstance()->addMiddlewares('Atr', [
+    new App\Middleware\Authorization,
+    new App\Middleware\Authentication
+]);
+
+//Lib\App::getInstance()->setGlobalMiddlewares([new App\Middleware\Authorization]);
+
+/* application routes */
+
 $routes = function (FastRoute\RouteCollector $r) {
 
-$r->get('/', '\App\Controller\ExampleController::index');
+$r->get('/[{id:\d+}]', ['App\Controller\BasicController::index']);
 
-$r->get('/dashboard', '\App\Controller\ExampleController::dashboard');
+$r->addRoute(['GET','POST'], '/login', ['App\Controller\UserController::login']);
 
-$r->addRoute(['GET','POST'] , '/example', function ($args) { var_dump($args); });
+$r->get('/logout', ['App\Controller\UserController::logout']);
 
-$r->post('/data', '\App\Controller\ExampleDataController::data');
+$r->addRoute(['GET','POST'], '/protected[/{id:\d+}]', ['App\Controller\BasicController::secret','Atn']);
 
-$r->addRoute(['GET', 'POST'], '/s/{action}', '\App\Controller\ExampleDataController::data');
+$r->get('/protected/permissioned', ['App\Controller\BasicController::secret','Atr']);
 
-$r->addRoute(['GET', 'POST'], '/login', '\App\Controller\ExampleController::login');
+$r->get('/hello', [function($request, $response, $vars) {
+    $response->getBody()->write('hello');
+    return $response;
+}]);
 
-$r->get('/logout', '\App\Controller\ExampleController::logout');
+$r->get('/example', [\App\Controller\ExampleController::class,'Atn']);
+$r->get('/example2', [\App\Controller\BasicController::class.'::index','Atr']);
+$r->get('/example/[{id:\d+}]', [\App\Controller\BasicController::class.'::index']);
+
+$r->addRoute(['GET', 'POST'], '/api/{something}', [\App\Controller\BasicController::class.'::index']);
 
 $r->addGroup('/here/there', function (FastRoute\RouteCollector $r) {
-    $r->get('/do-something', function ($args) { echo "do a thing"; });
-    $r->get('/do-another-thing', function ($args) { echo "do another thing"; });
-    $r->get('/do-the-things', function ($args) { echo "do all the things"; });
+    $r->get('/something', [function ($request, $response, $vars) { $response->getBody()->write("do a thing"); return $response; }]);
+    $r->get('/another-route', [\App\Controller\ExampleController::class, 'Atn']);
+    $r->get('/protected-route', [function ($request, $response, $vars) { $response->getBody()->write("do secret things"); return $response; },'Atn']);
 });
-
-//$r->addRoute(['GET', 'POST'], '/user/{id:\d+}', '\App\Controller\ExampleController::user');
-//$r->addRoute(['POST', 'OPTIONS'], '/api/{something}', '\App\Controller\ExampleController::api');
 
 return $r;
 };
