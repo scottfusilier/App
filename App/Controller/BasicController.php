@@ -9,19 +9,11 @@ class BasicController extends AppController
     public function index($request, $response, $args)
     {
         $params = array_merge($args,$request->getQueryParams());
-        $response->getBody()->write(Template::get()->render(View\BasicView::get()->setVars(['data' => json_encode($params)])));
-        return $response;
+        return $this->render($response,Template::get()->render(View\BasicView::get()->setVars(['data' => json_encode($params)])));
     }
 
     public function secret($request, $response, $args)
     {
-        $response->getbody()->write(
-            Template::get()->render(
-                View\BasicView::get()->setVars([
-                    'data' => json_encode(['secret'=>'oats'])
-                ])
-            )
-        );
-        return $response;
+        return $this->render($response,Template::get()->render(View\BasicView::get()->setVars(['data' => json_encode(['secret'=>'oats'])])));
     }
 }

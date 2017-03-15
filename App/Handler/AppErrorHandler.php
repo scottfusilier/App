@@ -10,11 +10,11 @@ class AppErrorHandler implements AppErrorHandlerInterface
 {
     public function handleNotFound()
     {
-        Template::get()->render(FourOhFour::get());
+        return Template::get()->render(FourOhFour::get());
     }
 
     public function handleAppError(\Exception $e)
     {
-        Template::get()->render(AppError::get());
+        return Template::get()->render(AppError::get());
     }
 }
