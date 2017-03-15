@@ -11,7 +11,6 @@ class ExampleController extends AppController
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args)
     {
-        $response->getBody()->write('called as a function');
-        return $response;
+        return $this->render($response,('called as a function'));
     }
 }

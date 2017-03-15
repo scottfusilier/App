@@ -9,7 +9,7 @@ class UserController extends AppController
 {
     public function login($request, $response, $args)
     {
-        $params = $request->getParsedBody(); //read POST
+        $params = $request->getParsedBody();
         $Auth = Container::get('AuthComponent');
 
         if (!empty($params)) {
@@ -29,8 +29,7 @@ class UserController extends AppController
         }
 
         // render login template and view
-        $response->getBody()->write(Template::get()->render(\App\View\User\Login::get()));
-        return $response;
+        return $this->render($response,Template::get()->render(\App\View\User\Login::get()));
     }
 
     public function logout($request, $response, $args)
