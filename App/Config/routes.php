@@ -21,6 +21,8 @@ $routes = function (FastRoute\RouteCollector $r) {
 
 $r->get('/[{id:\d+}]', ['App\Controller\BasicController::index']);
 
+$r->get('/download', ['App\Controller\BasicController::download']);
+
 $r->addRoute(['GET','POST'], '/login', ['App\Controller\UserController::login']);
 
 $r->get('/logout', ['App\Controller\UserController::logout']);
